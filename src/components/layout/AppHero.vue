@@ -1,5 +1,5 @@
 <template>
-  <section class="hero is-medium is-success">
+  <section class="hero is-success">
     <div class="hero-body">
       <div class="container has-text-centered">
         <h1 class="title">
@@ -8,7 +8,18 @@
         <h2 class="subtitle">
           Canciones que estan Vue-nisimas!
         </h2>
+        <AppTrackPlayer />
       </div>
     </div>
   </section>
 </template>
+
+<script>
+import AppTrackPlayer from '@/components/layout/AppPlayer.vue';
+
+export default {
+  components: {
+    AppTrackPlayer
+  }
+}
+</script>

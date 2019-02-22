@@ -9,6 +9,13 @@ class PlatziMusicService {
       .then(data => data)
       .catch(error => console.error(error));
   }
+
+  static getTrackById (id) {
+    return fetch(`${baseUrl}/tracks/${id}`)
+      .then(response => response.json())
+      .then(data => data)
+      .catch(error => console.error(error));
+  }
 }
 
 export default PlatziMusicService;

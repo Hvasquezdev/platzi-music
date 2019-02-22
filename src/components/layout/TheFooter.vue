@@ -3,7 +3,7 @@
     <div class="container">
       <div class="content has-text-centered">
         <p>
-          Code with ❤ by <a href="https://twitter.com/HecTorVasquez97">Hector Vasquez</a>
+          Code with <i class="fas fa-heart"></i> by <a href="https://twitter.com/HecTorVasquez97" target="_blank">Hector Vasquez</a>
         </p>
         <p>
           <a href="https://bulma.io">
