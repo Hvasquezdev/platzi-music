@@ -68,7 +68,7 @@ export default {
   methods: {
     goToTrack (id) {
       if (!this.track.preview_url) return;
-      this.$router.push({ name: 'track', params: { id } })
+      this.$router.push({ name: 'track', params: { id } });
     }
   }
 }

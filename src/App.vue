@@ -37,4 +37,15 @@ export default {
   pointer-events: none !important;
   text-decoration: none !important;
 }
+
+.move-enter-active, 
+.move-leave-active {
+  transform: translateX(0);
+  transition: all .3s;
+}
+
+.move-enter,
+.move-leave-to {
+  transform: translateX(100%);
+}
 </style>

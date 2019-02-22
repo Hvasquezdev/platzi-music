@@ -3,18 +3,20 @@
     <section class="section">
       <div class="container">
         <div class="columns is-multiline">
-          <app-notification 
-            v-show="notification.error || notification.success" 
-            @toggle="toggleNotification"
-            :notification="notification"
-          >
-            <p slot="notification" v-show="notification.error">
-              Music not found
-            </p>
-            <p slot="notification" v-show="notification.success">
-              <strong>Results were found of:</strong> {{ searchQuery }}
-            </p>
-          </app-notification>
+          <transition name="move">
+            <app-notification 
+              v-show="notification.error || notification.success" 
+              @toggle="toggleNotification"
+              :notification="notification"
+            >
+              <p slot="notification" v-show="notification.error">
+                Music not found
+              </p>
+              <p slot="notification" v-show="notification.success">
+                <strong>Results were found of:</strong> {{ searchQuery }}
+              </p>
+            </app-notification> 
+          </transition>
 
           <div class="column is-12">
             <nav class="level">
@@ -65,7 +67,9 @@
             />
           </div>
 
-          <app-spinner v-show="isLoading" />
+          <transition name="move">
+            <app-spinner v-show="isLoading" />
+          </transition>
         </div>
       </div>
     </section>

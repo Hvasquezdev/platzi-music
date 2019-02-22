@@ -1,7 +1,12 @@
 <template>
   <div class="container">
-    <app-track-detail-box :track="track" />
-    <app-spinner v-if="isLoading" />
+    <transition name="move">
+      <app-track-detail-box :track="track" />
+    </transition>
+    
+    <transition name="move">
+      <app-spinner v-show="isLoading" />
+    </transition>
   </div>
 </template>
 
