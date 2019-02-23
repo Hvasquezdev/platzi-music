@@ -30,7 +30,7 @@
     <footer class="card-footer">
       <a 
         class="card-footer-item has-text-success" 
-        @click="goToTrack(track.id)" 
+        @click="goToTrack(track)" 
         :class="{ 'isDisabled': !track.preview_url }"
       >
         <strong>Details</strong>
@@ -66,9 +66,10 @@ export default {
     }
   },
   methods: {
-    goToTrack (id) {
+    goToTrack (track) {
       if (!this.track.preview_url) return;
-      this.$router.push({ name: 'track', params: { id } });
+      this.$store.commit('setTrack', track);
+      this.$router.push({ name: 'track', params: { id: track.id } });
     }
   }
 }

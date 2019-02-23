@@ -62,8 +62,7 @@
             :key="index"
           >
             <app-track 
-              :track="track" 
-              @select="setSelectedTrack"
+              :track="track"
             />
           </div>
 
@@ -77,10 +76,9 @@
 </template>
 
 <script>
-import PlatziMusicService from '@/services/platzi-music.js';
+import { mapGetters } from 'vuex';
 
 import AppTrack from '@/components/layout/AppTrack.vue';
-
 import AppSpinner from '@/components/shared/AppSpinner.vue';
 import AppNotification from '@/components/shared/AppNotification.vue';
 
@@ -94,8 +92,6 @@ export default {
   data () {
     return {
       searchQuery: '',
-      tracks: [],
-      isLoading: false,
       notification: {
         error: false,
         success: false
@@ -103,31 +99,29 @@ export default {
       selectedTrack: ''
     }
   },
+  computed: {
+    ...mapGetters({
+      tracks: 'getTracks',
+      isLoading: 'getIsLoading'
+    }),
+    searchMessage () {
+      return this.tracks.length;
+    }
+  },
   methods: {
     search () {
       if (!this.searchQuery) return;
 
-      this.isLoading = true;
-      PlatziMusicService.searchTrack(this.searchQuery)
-        .then(data => {
-          this.notification.error = data.tracks.total === 0;
-          this.notification.success = data.tracks.total !== 0;
-          this.tracks = [...data.tracks.items];
-          this.isLoading = false;
+      this.$store.dispatch('searchTracks', { query: this.searchQuery })
+        .then(() => {
+          this.notification.error = this.tracks.total === 0;
+          this.notification.success = this.tracks.total !== 0;
         })
         .catch(error => console.error(error));
-    },
-    setSelectedTrack (id) {
-      this.selectedTrack = id;
     },
     toggleNotification () {
       this.notification.error = false;
       this.notification.success = false;
-    }
-  },
-  computed: {
-    searchMessage () {
-      return this.tracks.length;
     }
   }
 }

@@ -15,28 +15,19 @@
       <audio 
         :src="track.preview_url" 
         controls
-        autoplay
       />
     </p>
   </div>
 </template>
 
 <script>
-import EventBus from '@/plugins/event-bus.js';
+import { mapGetters } from 'vuex';
 
 export default {
-  data () {
-    return {
-      track: {}
-    }
-  },
-  mounted () {
-    EventBus.$on('set-track', (track) => {
-      this.track = track;
-    });
-  },
-  destroyed () {
-    EventBus.$off('set-track');
+  computed: {
+    ...mapGetters({
+      track: 'getTrack'
+    })
   }
 }
 </script>

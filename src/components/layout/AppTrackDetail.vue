@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import PlatziMusicService from '@/services/platzi-music.js';
+import { mapGetters, mapActions } from 'vuex';
 
 import AppTrackDetailBox from '@/components/layout/AppTrackDetailBox.vue';
 import AppSpinner from '@/components/shared/AppSpinner.vue';
@@ -21,21 +21,23 @@ export default {
     AppTrackDetailBox,
     AppSpinner
   },
-  data () {
-    return {
-      track: {},
-      isLoading: false
-    }
+  computed: {
+    ...mapGetters({
+      track: 'getTrack',
+      isLoading: 'getIsLoading'
+    })
   },
   created () {
     const id = this.$route.params.id;
-    this.isLoading = true;
-    PlatziMusicService.getTrackById(id)
-      .then(data => {
-        this.track = data;
-        this.isLoading = false;
-      })
-      .catch(error => console.error(error));
+
+    if (!this.track || !this.track.id || this.track.id !== id) {
+      this.getTrackById({ id });
+    }
+  },
+  methods: {
+    ...mapActions([
+      'getTrackById'
+    ])
   }
 }
 </script>
