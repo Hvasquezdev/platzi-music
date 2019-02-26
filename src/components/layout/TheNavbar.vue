@@ -1,9 +1,10 @@
 <template>
-  <nav class="navbar is-success" role="navigation" aria-label="main navigation">
+  <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
     <div class="container">
       <div class="navbar-brand">
         <router-link class="navbar-item" to="/">
-          🎶Platzi Music
+          <i class="fas fa-music"></i>
+          Vue Music
         </router-link>
 
         <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
@@ -15,3 +16,13 @@
     </div>
   </nav>
 </template>
+
+<style lang="scss" scoped>
+.navbar-brand {
+  .navbar-item {
+    i {
+      margin-right: 5px;
+    }
+  }
+}
+</style>

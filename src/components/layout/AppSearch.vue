@@ -13,7 +13,7 @@
                 Music not found
               </p>
               <p slot="notification" v-show="notification.success">
-                <strong>Results were found of:</strong> {{ searchQuery }}
+                <strong>Results of:</strong> {{ searchQuery }}
               </p>
             </app-notification> 
           </transition>
