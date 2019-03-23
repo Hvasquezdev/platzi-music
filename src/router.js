@@ -8,7 +8,6 @@ const AppTrackDetail = () => import ('@/components/layout/AppTrackDetail.vue');
 Vue.use(Router);
 
 export default new Router({
-  mode: 'history',
   base: process.env.BASE_URL,
   routes: [
     {
